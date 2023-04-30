@@ -35,11 +35,7 @@ const moveRoad = {
 
   draw: function() {
     ctx.drawImage(this.img, 0, this.roadY, canvas.width, canvas.height);
-    if (this.roadSpeed < 0) {
-      ctx.drawImage(this.img, 0, this.roadY - canvas.height, canvas.width, canvas.height);
-    } else {
-      ctx.drawImage(this.img, 0, this.roadY + this.img.height, canvas.width, canvas.height);
-    }
+    ctx.drawImage(this.img, 0, this.roadY - canvas.height, canvas.width, canvas.height);
   },
 };
 
