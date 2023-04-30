@@ -9,12 +9,16 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
 
+
+
+
 //Upload road
 const roadImg = new Image();
 roadImg.src = '../images/road.png';
 roadImg.onload = function() {
   ctx.drawImage(roadImg, 0, 0, canvas.width,canvas.height);
 };
+
 
 //Move Road
 const moveRoad = {
@@ -83,9 +87,18 @@ const generateObstacle = {
 }
 
 function crashed(obstacle){
-  // if(obstacle[0].obsY===470 && moveCar.x===){return true}
+  if(obstacle[0].obsY>480 && obstacle[0].obsY < 700){
+    return !(moveCar.x + 90 < obstacle[0].xInitial || moveCar.x + 10 > obstacle[0].xInitial + obstacle[0].xSize)
+  }
   return moveCar.x === 0 || moveCar.x === 400;
   // return !(this.bottom() < obstacle.top() || this.top() > obstacle.bottom() || this.right() < obstacle.left() || this.left() > obstacle.right());
+}
+
+//Upload score
+function score(){
+  ctx.font = '36px serif';
+  ctx.fillStyle = 'black';
+  ctx.fillText(`Score: ${moveRoad.roadFrames}`, 200, 50);
 }
 
 
@@ -102,10 +115,12 @@ function updateCanvas() {
   moveRoad.draw();
   moveCar.draw();
   obstacleArray[0].draw();
+  score();
   let animation = requestAnimationFrame(updateCanvas);
   //crash conditions
-  if(crashed(obstacleArray))
-  {cancelAnimationFrame(animation)}
+  if(crashed(obstacleArray)){
+    alert(`BANG! Your Score is: ${moveRoad.roadFrames -1}`);
+    cancelAnimationFrame(animation);}
 }
 
 
