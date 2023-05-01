@@ -14,7 +14,7 @@ const ctx = canvas.getContext('2d');
 
 //Upload road
 const roadImg = new Image();
-roadImg.src = '../images/road.png';
+roadImg.src = './images/road.png';
 roadImg.onload = function() {
   ctx.drawImage(roadImg, 0, 0, canvas.width,canvas.height);
 };
@@ -42,7 +42,7 @@ const moveRoad = {
 
 //Upload car
 const carImage = new Image();
-carImage.src = '../images/car.png';
+carImage.src = './images/car.png';
 carImage.onload = function() {
   ctx.drawImage(carImage, 200, 500, 100, 200);
 };
